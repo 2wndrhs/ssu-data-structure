@@ -137,4 +137,24 @@ public class DoubleArraySeq {
     data[currentIndex] = element;
     manyItems += 1;
   }
+
+  /**
+   * Place the contents of another sequence at the end of this sequence.
+   *
+   * @param addend a sequence whose contents will be placed at the end of this sequence
+   * @throws NullPointerException Indicates that addend is null.
+   * @throws OutOfMemoryError     Indicates insufficient memory to increase the size of this
+   *                              sequence.
+   * @precondition The parameter, addend, is not null.
+   * @postcondition The elements from addend have been placed at the end of this sequence. The
+   * current element of this sequence remains where it was, and the addend is also unchanged.
+   * @note An attempt to increase the capacity beyond Integer.MAX_VALUE will cause an arithmetic
+   * overflow that will cause the sequence to fail.
+   **/
+  public void addAll(DoubleArraySeq addend) {
+    ensureCapacity((manyItems + 1) * 2);
+
+    System.arraycopy(addend.data, 0, this.data, this.manyItems, addend.manyItems);
+    this.manyItems += addend.manyItems;
+  }
 }
