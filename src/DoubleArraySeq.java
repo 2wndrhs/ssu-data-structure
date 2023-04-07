@@ -157,4 +157,24 @@ public class DoubleArraySeq {
     System.arraycopy(addend.data, 0, this.data, this.manyItems, addend.manyItems);
     this.manyItems += addend.manyItems;
   }
+
+
+  /**
+   * Move forward, so that the current element is now the next element in this sequence.
+   *
+   * @throws IllegalStateException Indicates that there is no current element, so advance may not be
+   *                               called.
+   * @precondition isCurrent() returns true.
+   * @postcondition If the current element was already the end element of this sequence (with
+   * nothing after it), then there is no longer any current element. Otherwise, the new element is
+   * the element immediately after the original current element.
+   **/
+  public void advance() {
+    boolean isCurrent = !(currentIndex == manyItems);
+    if (!isCurrent) {
+      throw new IllegalStateException("There is no current element, so advance may not be called.");
+    }
+
+    currentIndex += 1;
+  }
 }
