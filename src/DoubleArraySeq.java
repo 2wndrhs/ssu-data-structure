@@ -96,6 +96,41 @@ public class DoubleArraySeq {
       currentIndex += 1;
       data[currentIndex] = element;
       manyItems += 1;
+
+      return;
+    }
+
+    data[currentIndex] = element;
+    manyItems += 1;
+  }
+
+  /**
+   * Add a new element to this sequence, before the current element. If the new element would take
+   * this sequence beyond its current capacity, then the capacity is increased before adding the new
+   * element.
+   *
+   * @param element the new element that is being added
+   * @throws OutOfMemoryError Indicates insufficient memory for increasing the sequence's capacity.
+   * @postcondition A new copy of the element has been added to this sequence. If there was a
+   * current element, then the new element is placed before the current element. If there was no
+   * current element, then the new element is placed at the start of the sequence. In all cases, the
+   * new element becomes the new current element of this sequence.
+   * @note An attempt to increase the capacity beyond Integer.MAX_VALUE will cause the sequence to
+   * fail with an arithmetic overflow.
+   **/
+  public void addBefore(int element) {
+    if (manyItems == data.length) {
+      ensureCapacity((manyItems + 1) * 2);
+    }
+
+    if (currentIndex != manyItems) {
+      for (int index = manyItems; index > currentIndex; index--) {
+        data[index] = data[index - 1];
+      }
+
+      data[currentIndex] = element;
+      manyItems += 1;
+
       return;
     }
 
