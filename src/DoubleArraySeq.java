@@ -235,4 +235,22 @@ public class DoubleArraySeq implements Cloneable {
   public int getCapacity() {
     return data.length;
   }
+
+  /**
+   * Accessor method to get the current element of this sequence.
+   *
+   * @return the current element of this sequence
+   * @throws IllegalStateException Indicates that there is no current element, so getCurrent may not
+   *                               be called.
+   * @precondition isCurrent() returns true.
+   **/
+  public double getCurrent() {
+    boolean isCurrent = !(currentIndex == manyItems);
+    if (!isCurrent) {
+      throw new IllegalStateException(
+          "There is no current element, so getCurrent may not be called.");
+    }
+
+    return data[currentIndex];
+  }
 }
