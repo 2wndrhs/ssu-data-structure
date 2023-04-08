@@ -1,4 +1,4 @@
-public class DoubleArraySeq {
+public class DoubleArraySeq implements Cloneable {
 
   // Invariant of the DoubleArraySeq class:
   //   1. The number of elements in the seqeunces is in the instance variable
@@ -176,5 +176,28 @@ public class DoubleArraySeq {
     }
 
     currentIndex += 1;
+  }
+
+  /**
+   * Generate a copy of this sequence.
+   *
+   * @return The return value is a copy of this sequence. Subsequent changes to the copy will not
+   * affect the original, nor vice versa.
+   * @throws OutOfMemoryError Indicates insufficient memory for creating the clone.
+   **/
+  public DoubleArraySeq clone() {  // Clone a DoubleArraySeq object.
+    DoubleArraySeq answer;
+
+    try {
+      answer = (DoubleArraySeq) super.clone();
+    } catch (
+        CloneNotSupportedException e) {
+      throw new RuntimeException
+          ("This class does not implement Cloneable");
+    }
+
+    answer.data = data.clone();
+
+    return answer;
   }
 }
