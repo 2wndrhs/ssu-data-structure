@@ -261,4 +261,28 @@ public class DoubleArraySeq implements Cloneable {
   public boolean isCurrent() {
     return !(currentIndex == manyItems);
   }
+
+  /**
+   * Remove the current element from this sequence.
+   *
+   * @throws IllegalStateException Indicates that there is no current element, so removeCurrent may
+   *                               not be called.
+   * @precondition isCurrent() returns true.
+   * @postcondition The current element has been removed from this sequence, and the following
+   * element (if there is one) is now the new current element. If there was no following element,
+   * then there is now no current element.
+   **/
+  public void removeCurrent() {
+    if (!isCurrent()) {
+      throw new IllegalStateException(
+          "There is no current element, so removeCurrent may not be called.");
+    }
+
+    for (int index = currentIndex; index < manyItems; index++) {
+      data[index] = data[index + 1];
+    }
+
+    manyItems -= 1;
+  }
+
 }
