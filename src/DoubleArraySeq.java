@@ -293,4 +293,14 @@ public class DoubleArraySeq implements Cloneable {
   public int size() {
     return manyItems;
   }
+
+  /**
+   * Set the current element at the front of this sequence.
+   *
+   * @postcondition The front element of this sequence is now the current element (but if this
+   * sequence has no elements at all, then there is no current element).
+   **/
+  public void start() {
+    currentIndex = 0;
+  }
 }
