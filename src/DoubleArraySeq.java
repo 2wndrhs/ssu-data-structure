@@ -152,7 +152,7 @@ public class DoubleArraySeq implements Cloneable {
    * overflow that will cause the sequence to fail.
    **/
   public void addAll(DoubleArraySeq addend) {
-    ensureCapacity((manyItems + 1) * 2);
+    ensureCapacity((this.manyItems + 1) * 2);
 
     System.arraycopy(addend.data, 0, this.data, this.manyItems, addend.manyItems);
     this.manyItems += addend.manyItems;
@@ -199,5 +199,39 @@ public class DoubleArraySeq implements Cloneable {
     answer.data = data.clone();
 
     return answer;
+  }
+
+  /**
+   * Create a new sequence that contains all the elements from one sequence
+   * followed by another.
+   * @param s1
+   *   the first of two sequences
+   * @param s2
+   *   the second of two sequences
+   * @precondition
+   *   Neither s1 nor s2 is null.
+   * @return
+   *   a new sequence that has the elements of s1 followed by the
+   *   elements of s2 (with no current element)
+   * @exception NullPointerException
+   *   Indicates that one of the arguments is null.
+   * @exception OutOfMemoryError
+   *   Indicates insufficient memory for the new sequence.
+   * @note
+   *   An attempt to create a sequence with a capacity beyond
+   *   Integer.MAX_VALUE will cause an arithmetic overflow
+   *   that will cause the sequence to fail.
+   **/
+  public static DoubleArraySeq catenation(DoubleArraySeq s1, DoubleArraySeq s2)
+  {
+    DoubleArraySeq newSequence = new DoubleArraySeq(s1.manyItems + s2.manyItems);
+
+    System.arraycopy(s1.data, 0, newSequence.data, 0, s1.manyItems);
+    System.arraycopy(s2.data, 0, newSequence.data, s1.manyItems, s2.manyItems);
+
+    newSequence.manyItems = s1.manyItems + s2.manyItems;
+    newSequence.currentIndex = newSequence.manyItems;;
+
+    return newSequence;
   }
 }
