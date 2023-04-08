@@ -65,7 +65,7 @@ public class DoubleArraySeq implements Cloneable {
    * @note An attempt to increase the capacity beyond Integer.MAX_VALUE will cause the sequence to
    * fail with an arithmetic overflow.
    **/
-  public void addAfter(int element) {
+  public void addAfter(double element) {
     if (manyItems == data.length) {
       ensureCapacity((manyItems + 1) * 2);
     }
@@ -100,7 +100,7 @@ public class DoubleArraySeq implements Cloneable {
    * @note An attempt to increase the capacity beyond Integer.MAX_VALUE will cause the sequence to
    * fail with an arithmetic overflow.
    **/
-  public void addBefore(int element) {
+  public void addBefore(double element) {
     if (manyItems == data.length) {
       ensureCapacity((manyItems + 1) * 2);
     }
@@ -137,6 +137,7 @@ public class DoubleArraySeq implements Cloneable {
     ensureCapacity((this.manyItems + 1) * 2);
 
     System.arraycopy(addend.data, 0, this.data, this.manyItems, addend.manyItems);
+
     this.manyItems += addend.manyItems;
   }
 
