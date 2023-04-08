@@ -152,8 +152,7 @@ public class DoubleArraySeq implements Cloneable {
    * the element immediately after the original current element.
    **/
   public void advance() {
-    boolean isCurrent = !(currentIndex == manyItems);
-    if (!isCurrent) {
+    if (!isCurrent()) {
       throw new IllegalStateException("There is no current element, so advance may not be called.");
     }
 
@@ -245,12 +244,21 @@ public class DoubleArraySeq implements Cloneable {
    * @precondition isCurrent() returns true.
    **/
   public double getCurrent() {
-    boolean isCurrent = !(currentIndex == manyItems);
-    if (!isCurrent) {
+    if (!isCurrent()) {
       throw new IllegalStateException(
           "There is no current element, so getCurrent may not be called.");
     }
 
     return data[currentIndex];
+  }
+
+  /**
+   * Accessor method to determine whether this sequence has a specified current element that can be
+   * retrieved with the getCurrent method.
+   *
+   * @return true (there is a current element) or false (there is no current element at the moment)
+   **/
+  public boolean isCurrent() {
+    return !(currentIndex == manyItems);
   }
 }
