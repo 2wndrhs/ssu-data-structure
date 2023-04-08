@@ -1,7 +1,7 @@
 public class DoubleArraySeq implements Cloneable {
 
   // Invariant of the DoubleArraySeq class:
-  //   1. The number of elements in the seqeunces is in the instance variable
+  //   1. The number of elements in the sequences is in the instance variable
   //      manyItems.
   //   2. For an empty sequence (with no elements), we do not care what is
   //      stored in any of data; for a non-empty sequence, the elements of the
@@ -196,7 +196,7 @@ public class DoubleArraySeq implements Cloneable {
    * @note An attempt to create a sequence with a capacity beyond Integer.MAX_VALUE will cause an
    * arithmetic overflow that will cause the sequence to fail.
    **/
-  public static DoubleArraySeq catenation(DoubleArraySeq s1, DoubleArraySeq s2) {
+  public static DoubleArraySeq concatenation(DoubleArraySeq s1, DoubleArraySeq s2) {
     DoubleArraySeq newSequence = new DoubleArraySeq(s1.manyItems + s2.manyItems);
 
     System.arraycopy(s1.data, 0, newSequence.data, 0, s1.manyItems);
