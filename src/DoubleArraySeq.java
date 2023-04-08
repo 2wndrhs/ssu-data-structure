@@ -134,7 +134,7 @@ public class DoubleArraySeq implements Cloneable {
    * overflow that will cause the sequence to fail.
    **/
   public void addAll(DoubleArraySeq addend) {
-    ensureCapacity((this.manyItems + 1) * 2);
+    ensureCapacity(this.manyItems + addend.manyItems);
 
     System.arraycopy(addend.data, 0, this.data, this.manyItems, addend.manyItems);
 
