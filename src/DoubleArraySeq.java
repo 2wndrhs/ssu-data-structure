@@ -70,7 +70,7 @@ public class DoubleArraySeq implements Cloneable {
       ensureCapacity((manyItems + 1) * 2);
     }
 
-    if (currentIndex != manyItems) {
+    if (isCurrent()) {
       for (int index = manyItems; index > currentIndex + 1; index--) {
         data[index] = data[index - 1];
       }
@@ -105,7 +105,7 @@ public class DoubleArraySeq implements Cloneable {
       ensureCapacity((manyItems + 1) * 2);
     }
 
-    if (currentIndex != manyItems) {
+    if (isCurrent()) {
       for (int index = manyItems; index > currentIndex; index--) {
         data[index] = data[index - 1];
       }
