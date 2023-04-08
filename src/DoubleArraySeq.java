@@ -285,4 +285,12 @@ public class DoubleArraySeq implements Cloneable {
     manyItems -= 1;
   }
 
+  /**
+   * Determine the number of elements in this sequence.
+   *
+   * @return the number of elements in this sequence
+   **/
+  public int size() {
+    return manyItems;
+  }
 }
