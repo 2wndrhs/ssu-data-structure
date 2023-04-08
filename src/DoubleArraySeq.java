@@ -303,4 +303,21 @@ public class DoubleArraySeq implements Cloneable {
   public void start() {
     currentIndex = 0;
   }
+
+  /**
+   * Reduce the current capacity of this sequence to its actual size (i.e., the number of elements
+   * it contains).
+   *
+   * @throws OutOfMemoryError Indicates insufficient memory for altering the capacity.
+   * @postcondition This sequence's capacity has been changed to its current size.
+   **/
+  public void trimToSize() {
+    double[] trimmedArray;
+
+    if (data.length != manyItems) {
+      trimmedArray = new double[manyItems];
+      System.arraycopy(data, 0, trimmedArray, 0, manyItems);
+      data = trimmedArray;
+    }
+  }
 }
