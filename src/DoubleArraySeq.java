@@ -52,24 +52,6 @@ public class DoubleArraySeq implements Cloneable {
   }
 
   /**
-   * Change the current capacity of this sequence.
-   *
-   * @param minimumCapacity the new capacity for this sequence
-   * @throws OutOfMemoryError Indicates insufficient memory for: new int[minimumCapacity].
-   * @postcondition This sequence's capacity has been changed to at least minimumCapacity. If the
-   * capacity was already at or greater than minimumCapacity, then the capacity is left unchanged.
-   **/
-  public void ensureCapacity(int minimumCapacity) {
-    double[] biggerArray;
-
-    if (data.length < minimumCapacity) {
-      biggerArray = new double[minimumCapacity];
-      System.arraycopy(data, 0, biggerArray, 0, manyItems);
-      data = biggerArray;
-    }
-  }
-
-  /**
    * Add a new element to this sequence, after the current element. If the new element would take
    * this sequence beyond its current capacity, then the capacity is increased before adding the new
    * element.
@@ -202,36 +184,45 @@ public class DoubleArraySeq implements Cloneable {
   }
 
   /**
-   * Create a new sequence that contains all the elements from one sequence
-   * followed by another.
-   * @param s1
-   *   the first of two sequences
-   * @param s2
-   *   the second of two sequences
-   * @precondition
-   *   Neither s1 nor s2 is null.
-   * @return
-   *   a new sequence that has the elements of s1 followed by the
-   *   elements of s2 (with no current element)
-   * @exception NullPointerException
-   *   Indicates that one of the arguments is null.
-   * @exception OutOfMemoryError
-   *   Indicates insufficient memory for the new sequence.
-   * @note
-   *   An attempt to create a sequence with a capacity beyond
-   *   Integer.MAX_VALUE will cause an arithmetic overflow
-   *   that will cause the sequence to fail.
+   * Create a new sequence that contains all the elements from one sequence followed by another.
+   *
+   * @param s1 the first of two sequences
+   * @param s2 the second of two sequences
+   * @return a new sequence that has the elements of s1 followed by the elements of s2 (with no
+   * current element)
+   * @throws NullPointerException Indicates that one of the arguments is null.
+   * @throws OutOfMemoryError     Indicates insufficient memory for the new sequence.
+   * @precondition Neither s1 nor s2 is null.
+   * @note An attempt to create a sequence with a capacity beyond Integer.MAX_VALUE will cause an
+   * arithmetic overflow that will cause the sequence to fail.
    **/
-  public static DoubleArraySeq catenation(DoubleArraySeq s1, DoubleArraySeq s2)
-  {
+  public static DoubleArraySeq catenation(DoubleArraySeq s1, DoubleArraySeq s2) {
     DoubleArraySeq newSequence = new DoubleArraySeq(s1.manyItems + s2.manyItems);
 
     System.arraycopy(s1.data, 0, newSequence.data, 0, s1.manyItems);
     System.arraycopy(s2.data, 0, newSequence.data, s1.manyItems, s2.manyItems);
 
     newSequence.manyItems = s1.manyItems + s2.manyItems;
-    newSequence.currentIndex = newSequence.manyItems;;
+    newSequence.currentIndex = newSequence.manyItems;
 
     return newSequence;
+  }
+
+  /**
+   * Change the current capacity of this sequence.
+   *
+   * @param minimumCapacity the new capacity for this sequence
+   * @throws OutOfMemoryError Indicates insufficient memory for: new int[minimumCapacity].
+   * @postcondition This sequence's capacity has been changed to at least minimumCapacity. If the
+   * capacity was already at or greater than minimumCapacity, then the capacity is left unchanged.
+   **/
+  public void ensureCapacity(int minimumCapacity) {
+    double[] biggerArray;
+
+    if (data.length < minimumCapacity) {
+      biggerArray = new double[minimumCapacity];
+      System.arraycopy(data, 0, biggerArray, 0, manyItems);
+      data = biggerArray;
+    }
   }
 }
