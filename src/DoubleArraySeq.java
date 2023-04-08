@@ -225,4 +225,14 @@ public class DoubleArraySeq implements Cloneable {
       data = biggerArray;
     }
   }
+
+  /**
+   * Accessor method to get the current capacity of this sequence. The add method works efficiently
+   * (without needing more memory) until this capacity is reached.
+   *
+   * @return the current capacity of this sequence
+   **/
+  public int getCapacity() {
+    return data.length;
+  }
 }
