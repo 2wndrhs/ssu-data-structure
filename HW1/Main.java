@@ -1,3 +1,5 @@
+package HW1;
+
 public class Main {
 
   public static void main(String[] args) {
@@ -13,6 +15,7 @@ public class Main {
     numbers2.addAfter(2.5);
 
     System.out.println("numbers1 size: " + numbers1.size()); // 3
+    System.out.println();
 
     numbers1.start();
     System.out.println("numbers1 current element: " + numbers1.getCurrent()); // 10.1
@@ -20,6 +23,7 @@ public class Main {
     System.out.println("numbers1 current element: " + numbers1.getCurrent()); // 40.2
     numbers1.advance();
     System.out.println("numbers1 current element: " + numbers1.getCurrent()); // 1.1
+    System.out.println();
 
     numbers1.addBefore(10.0);
     numbers1.addBefore(99.0);
@@ -28,12 +32,14 @@ public class Main {
       // 10.1 / 40.2 / 99.0 / 10.0 / 1.1
       System.out.println("numbers1 current element: " + numbers1.getCurrent());
     }
+    System.out.println();
 
     numbers1.start();
     numbers1.advance();
     numbers1.removeCurrent();
 
     System.out.println("numbers1 current element: " + numbers1.getCurrent()); // 99.0
+    System.out.println();
 
     numbers1.addAll(numbers2);
 
@@ -41,6 +47,7 @@ public class Main {
       // 10.1 / 99.0 / 10.0 / 1.1 / 4.9 / 0.3 / 2.5
       System.out.println("numbers1.addAll() current element: " + numbers1.getCurrent());
     }
+    System.out.println();
 
     DoubleArraySeq concatedArray = DoubleArraySeq.concatenation(numbers1, numbers2);
 
@@ -48,6 +55,7 @@ public class Main {
       // 10.1 / 99.0 / 10.0 / 1.1 / 4.9 / 0.3 / 2.5 / 4.9 / 0.3 / 2.5
       System.out.println("concatedArray current element: " + concatedArray.getCurrent());
     }
+    System.out.println();
 
     DoubleArraySeq clonedArray = numbers2.clone();
 
@@ -55,9 +63,11 @@ public class Main {
       // 4.9 / 0.3 / 2.5
       System.out.println("clonedArray current element: " + clonedArray.getCurrent());
     }
+    System.out.println();
 
     numbers2.trimToSize();
 
     System.out.println("numbers2 trimmed size: " + numbers2.size()); // 3
+    System.out.println();
   }
 }

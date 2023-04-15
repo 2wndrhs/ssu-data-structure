@@ -1,6 +1,8 @@
+package HW1;
+
 public class DoubleArraySeq implements Cloneable {
 
-  // Invariant of the DoubleArraySeq class:
+  // Invariant of the HW1.DoubleArraySeq class:
   //   1. The number of elements in the sequences is in the instance variable
   //      manyItems.
   //   2. For an empty sequence (with no elements), we do not care what is
@@ -167,7 +169,7 @@ public class DoubleArraySeq implements Cloneable {
    * affect the original, nor vice versa.
    * @throws OutOfMemoryError Indicates insufficient memory for creating the clone.
    **/
-  public DoubleArraySeq clone() {  // Clone a DoubleArraySeq object.
+  public DoubleArraySeq clone() {  // Clone a HW1.DoubleArraySeq object.
     DoubleArraySeq answer;
 
     try {
